@@ -88,6 +88,22 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
   },
+  {
+    baslik: "2022'de Profesyonel Yazılımcı Olmak",
+    tarih: "1 Kasım 2022",
+    ilkParagraf: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    ikinciParagraf: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
+  },
 ];
 
 /*
@@ -114,4 +130,48 @@ const data = [
 
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
+
 */
+
+const haberYapici = (haber) => {
+  const haberYapiciDiv = document.createElement("div");
+  haberYapiciDiv.className = "article";
+  const haberYapiciH2 = document.createElement("h2");
+  haberYapiciH2.textContent = haber.baslik;
+  haberYapiciDiv.prepend(haberYapiciH2);
+
+  const haberYapiciP = document.createElement("p");
+  haberYapiciP.className = "tarih";
+  haberYapiciP.textContent = haber.tarih;
+  haberYapiciDiv.append(haberYapiciP);
+
+  const haberYapiciP2 = document.createElement("p");
+  haberYapiciP2.textContent = haber.ilkParagraf;
+  haberYapiciDiv.append(haberYapiciP2);
+
+  const haberYapiciP3 = document.createElement("p");
+  haberYapiciP3.textContent = haber.ikinciParagraf;
+  haberYapiciDiv.append(haberYapiciP3);
+
+  const haberYapiciP4 = document.createElement("p");
+  haberYapiciP4.textContent = haber.ucuncuParagraf;
+  haberYapiciDiv.append(haberYapiciP4);
+
+  const haberYapiciButton = document.createElement("button");
+  haberYapiciButton.className = "expandButton";
+  haberYapiciButton.textContent = "+";
+
+  haberYapiciButton.addEventListener("click", (e) => {
+    haberYapiciDiv.classList.toggle("article-open");
+  });
+
+  haberYapiciDiv.append(haberYapiciButton);
+
+  return haberYapiciDiv;
+};
+
+const divArticles = document.querySelector(".articles");
+
+data.forEach((element) => {
+  divArticles.append(haberYapici(element));
+});
